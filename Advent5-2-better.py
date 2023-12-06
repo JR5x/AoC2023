@@ -101,21 +101,22 @@ a = 1
 b = 10 ** 8
 c = 7
 
-done = False
-
-while done == False:
-    count = 1
-    while count < 10:
-        loc = speedy_lookup(a, b, c)
-        seed = seed_to_location(loc)
-        if any(pair[0] <= seed < (pair[0] + pair[1]) for pair in seeds):
-            print(f"{loc} is the answer")
-            done = True
-            break
-        loc += count
-        count += 1
-    a = loc - 9
-
+if any(pair[0] <= seed_to_location(1) < (pair[0] + pair[1]) for pair in seeds):
+    print("1 is the answer.")
+else:
+    done = False
+    while done == False:
+        count = 1
+        while count < 10:
+            loc = speedy_lookup(a, b, c)
+            seed = seed_to_location(loc)
+            if any(pair[0] <= seed < (pair[0] + pair[1]) for pair in seeds):
+                print(f"{loc} is the answer")
+                done = True
+                break
+            loc += count
+            count += 1
+        a = loc - 9
 
 end = time.time()
 print(f'Time taken: {end - start} seconds')
